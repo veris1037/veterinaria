@@ -51,13 +51,13 @@ function getAll() {
 }
 
 function deleteUser() {
-    if (!isset($_GET['id_user']) || $_GET['id_user'] != '') {
-        echo json_encode([ 'status' => 403, 'message' => 'ID invalido' ]);
+    if (!isset($_GET['id']) || $_GET['id'] == '') {
+        echo json_encode([ 'status' => 402, 'message' => 'ID invalido' ]);
         return false;
     }
 
     $userObj = new User();
-    $id_user = $_GET['id_user'];
+    $id_user = $_GET['id'];
 
     if ($id_user) {
         $result = $userObj->delete($id_user);

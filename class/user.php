@@ -37,6 +37,7 @@ class User extends DB{
             $items = [];
             while($row = $query->fetch(PDO::FETCH_ASSOC)){
                 $item = [
+                        'id' => $row['id'],
                         'name'        => $row['name'],
                         'lastname'   => $row['lastname'],
                         'email'      => $row['email'],

@@ -14,10 +14,10 @@
     <div class="w-full h-full bg-white rounded shadow p-2 flex flex-col">
 
         <div class="w-full grid grid-cols-5 items-center justify-items-center py-2">
-            <p>ID</p>
             <p>Nombre</p>
+            <p>Apellido</p>
             <p>email</p>
-            <p>comentario</p>
+            <p>teléfono</p>
             <p>Opciones</p>
         </div>
 
@@ -29,5 +29,6 @@
 
     <?php include_once 'template/layout-bot.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="src/js/users.js"></script>
 </body>
 </html>
