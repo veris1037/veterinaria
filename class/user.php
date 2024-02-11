@@ -56,7 +56,7 @@ class User extends DB{
         }
 
         $query = $this->connect()->prepare('DELETE FROM user WHERE id = :id');
-        $result = $query->excute(['id' => $id]);
+        $result = $query->execute(['id' => $id]);
 
         if ($result) {
             return true;
@@ -85,6 +85,57 @@ class User extends DB{
         ]);
 
         return true;
+    }
+
+    function updateUser($info_user) {
+        $sql = "UPDATE usuarios SET";
+        $params = [];
+
+        if (isset($info_user['name']) && $info_user['name'] != '') {
+            $sql .= " name = :name,";
+            $params += ["name" => $info_user['name']];
+        }
+
+        if (isset($info_user['lastname']) && $info_user['lastname'] != '') {
+            $sql .= " lastname = :lastname,";
+            $params += ["lastname" => $info_user['lastname']];
+        }
+
+        if (isset($info_user['email']) && $info_user['email'] != '') {
+            $sql .= " email = :email,";
+            $params += ["email" => $info_user['email']];
+        }
+
+        if (isset($info_user['phone']) && $info_user['phone'] != '') {
+            $sql .= " phone = :phone,";
+            $params += ["phone" => $info_user['phone']];
+        }
+
+        if (isset($info_user['type']) && $info_user['type'] != '') {
+            $sql .= " type = :type,";
+            $params += ["type" => $info_user['type']];
+        }
+
+        if (isset($info_user['password']) && $info_user['password'] != '') {
+            $sql .= " password = :password,";
+            $params += ["password" => $info_user['password']];
+        }
+
+        if (substr($sql, -1) === ',') {
+            $sql = rtrim($sql, ',');
+        }
+
+        $sql .= " WHERE id=:id";
+        $params += ["id" => $info_user['id']];
+
+        $query = $this->connect()->prepare($sql);
+        $result = $query->execute($params);
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

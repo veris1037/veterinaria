@@ -48,7 +48,7 @@ class Cita extends DB {
         }
 
         $query = $this->connect()->prepare('DELETE FROM event WHERE id = :id');
-        $result = $query->excute(['id' => $id]);
+        $result = $query->execute(['id' => $id]);
 
         if ($result) {
             return true;
